@@ -44,21 +44,29 @@ public class TrafficSystem {
     
    
    static boolean arrivalTimeCalc (int time) {
-	   if (time % arrivalIntensity == 0) return true;
-	   else return false;
+	   if (time % arrivalIntensity == 0) {
+		   return true;
+	   }
+	   else {
+		   return false;
+	   }
    }
     
     static boolean destinationIsD1 () {
     	destinationCounter++;
-    	if (destinationCounter % denominatorForD1 == 0) return true;
-    	else return false;
+    	if (destinationCounter % denominatorForD1 == 0) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
     
     public Properties loadProp() { 
     Properties properties = new Properties();
     InputStream ourStream = getClass().getResourceAsStream("properties.properties");
     try {
-    properties.load(ourStream); 
+    	properties.load(ourStream); 
     } catch (IOException e){
     	e.printStackTrace();
     }
@@ -96,9 +104,7 @@ public class TrafficSystem {
     	step();
     	time++;
     }
-    	
-    	//...
-    	}
+    }
     
     
     public void readParameters() {
@@ -113,8 +119,6 @@ public class TrafficSystem {
 	TrafficSystem.noOfSteps = Integer.parseInt(this.loadProp().getProperty("noOfSteps"));
 	TrafficSystem.arrivalIntensity = Integer.parseInt(this.loadProp().getProperty("arrivalIntensity"));
 	TrafficSystem.denominatorForD1 = Integer.parseInt(this.loadProp().getProperty("denominatorForD1"));
-	//TrafficSystem.D1.setOwner(r1);
-	//TrafficSystem.D2.setOwner(r2);
 
     // L�ser in parametrar f�r simuleringen
 	// Metoden kan l�sa fr�n terminalf�nster, dialogrutor
@@ -133,16 +137,15 @@ public class TrafficSystem {
 		r1.getFirst();
 	}
 	
-	if (s2.isGreen() && r2.firstCar() != null){
+	if (s2.isGreen() && r2.firstCar() != null) {
 		calcCarTimeStats(r2);
 		carsThatWentToD2++;
 		r2.getFirst();
 	}
 	r1.step();
 	r2.step();
-	
-	
-	if (r0.firstCar() != null){
+		
+	if (r0.firstCar() != null) {
 		if (r0.firstCar().getDestination().getIdNumber() == -1 && r1.lastFree()) {
 			r1.putLast(r0.getFirst());
 		}
@@ -151,22 +154,19 @@ public class TrafficSystem {
 		}	
 	}
 	
-	
-	//r1.step();
-	//r2.step();
 	r0.step();
 	
 	if (arrivalTimeCalc(time) && r0.lastFree()) {
 		if (destinationIsD1()) {	
-		Car newCar = new Car (time, D1, null);
-		r0.putLast(newCar);
+			Car newCar = new Car (time, D1, null);
+			r0.putLast(newCar);
 		}
 		else {
-		Car newCar = new Car (time, D2, null);
-		r0.putLast(newCar);
+			Car newCar = new Car (time, D2, null);
+			r0.putLast(newCar);
 		}	
 	}		
-	else if (arrivalTimeCalc (time) && r0.lastFree() == false){
+	else if (arrivalTimeCalc (time) && r0.lastFree() == false) {
 		deniedCars++;
 	}
 	}
@@ -194,6 +194,8 @@ public class TrafficSystem {
     	System.out.println("Number of cars denied: " + deniedCars);
     	System.out.println("Longest time taken: " + longestTime);
     	System.out.println("Average time taken: " + averageTime);
+    	System.out.println(s1.toString());
+    	System.out.println(s2.toString());
     	// Skriv statistiken samlad s� h�r l�ngt
     }
 
@@ -201,8 +203,8 @@ public class TrafficSystem {
     	System.out.println(r1.toString() + "|<-R1| " + r0.toString() + "|<-R0|");
     	System.out.println(r2.toString() + "|<-R2|");
     	//System.out.println(""+ (r0.theLane[0].getForward().getCurrentCar()));
-    // Skriv ut en grafisk representation av k�situationen
-	// med hj�lp av klassernas toString-metoder
+    	// Skriv ut en grafisk representation av k�situationen
+    	// med hj�lp av klassernas toString-metoder
     }
 
 }

@@ -64,8 +64,9 @@ public class TrafficTest {
 
 	@Test
 	public void testTrafficSystem () {
-	TrafficSystem ourTrafficSystem = new TrafficSystem();
-	ourTrafficSystem.print();
-	ourTrafficSystem.printStatistics();
+		Simulation.main();
+	//	TrafficSystem ourTrafficSystem = new TrafficSystem();
+	//	ourTrafficSystem.print();
+	//	ourTrafficSystem.printStatistics();
 	}
 }

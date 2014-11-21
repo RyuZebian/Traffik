@@ -67,12 +67,11 @@ import java.util.Properties;
 
 public class Simulation {
 
-    public static void main(String [] args) {
-    
-    // Skapar ett TrafficSystem
+    public static void main() {
+    	TrafficSystem theTrafficSystem = new TrafficSystem();
+    	theTrafficSystem.print();
+    	theTrafficSystem.printStatistics();
+    // Skapar ett TrafficSystem med egenskaper från filen "properties" i samma mapp
 	// Utf�r stegningen, anropar utskriftsmetoder
-
-	//...
-
     }
 }
