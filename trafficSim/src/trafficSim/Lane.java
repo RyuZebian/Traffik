@@ -9,38 +9,35 @@ public class Lane {
     	// Undantag som kastas n�r det inte gick att l�gga 
         // in en ny bil p� v�gen
     }
-    private int noOfCars;
     protected CarPosition[] theLane;
 
     public Lane(int n) {
-	theLane = new CarPosition[(n+1)];
-	for (int i = 0; i <= n; i++) {
-		theLane[i] = new CarPosition();
-		theLane[i].setIdNumber(i);
-	}
-	for (int i = getLength()-1; i > 0; i--) {
-	theLane[i].setForward(theLane[i-1]); 
-	}
+    	theLane = new CarPosition[(n+1)];
+    	for (int i = 0; i <= n; i++) {
+    		theLane[i] = new CarPosition();
+    		theLane[i].setIdNumber(i);
+    	}
+    	for (int i = getLength()-1; i > 0; i--) {
+    		theLane[i].setForward(theLane[i-1]); 
+    	}
     // Konstruerar ett Lane-objekt med plats f�r n fordon
     // Samt l�nker ihop varje CarPosition med forward f�r den framf�r
-
     }
     
-    public boolean matchEnd(CarPosition target)
-    {
-    	if(theLane[0] == target)
+    public boolean matchEnd(CarPosition target) {
+    	if(theLane[0] == target) {
     		return true;
-    	else
+    	}
+    	else {
     		return false;
+    	}
     }
-    
     
     public int getLength(){
     	return theLane.length;
     }
     
-    public void setParallel(Lane sideLane)
-    {
+    public void setParallel(Lane sideLane) {
     	int i = 0;
     	while(i < sideLane.getLength() && i < theLane.length)
     	{
@@ -50,17 +47,11 @@ public class Lane {
     }
 
     public void step() {
-	//getFirst();
-	for (int i = 1; i < (theLane.length); i++) {
-		theLane[i].moveForward();
-		//ska forward också uppdateras? Tror ej det, 
-		//eftersom det är car som flyttas. Annars:	
-		//theLane[i].setForward(theLane[i-1]);
-	}
-    	
-    	
+    	for (int i = 1; i < (theLane.length); i++) {
+    		theLane[i].moveForward();
+    	}   	
     // Stega fram alla fordon (utom det p� plats 0) ett steg 
-        // (om det g�r). (Fordonet p� plats 0 tas bort utifr�n 
+    // (om det g�r). (Fordonet p� plats 0 tas bort utifr�n 
 	// mm h a metoden nedan.)
     }
 
@@ -78,31 +69,29 @@ public class Lane {
 
 
     public boolean lastFree() {
-    	if (theLane [(theLane.length-1)].getCurrentCar() == null) return true;
-    	return false;
-	// Returnera true om sista platsen ledig, annars false
+    	if (theLane [(theLane.length-1)].getCurrentCar() == null) {
+    		return true;
+    	}
+    	else { 
+    		return false;
+    	}
+    		// Returnera true om sista platsen ledig, annars false
     }
 
     public void putLast(Car c) throws OverflowException {
     int laneLength = getLength();
-    //if (laneLength == numberOfCars) throw new OverflowException();
     if (lastFree()) {
-    c.setCurrentPosition(theLane [(laneLength-1)]);  
-    theLane [(laneLength-1)].setCurrentCar(c);
+    	c.setCurrentPosition(theLane [(laneLength-1)]);  
+    	theLane [(laneLength-1)].setCurrentCar(c);
     }
-    else throw new OverflowException();
-    }
-    // St�ll en bil p� sista platsen p� v�gen
-	// (om det g�r).
-
-    public int countCars() {
-    	int numberOfCars = 0;
-    	for (CarPosition c : theLane) {
-    		if (c.getCurrentCar() != null) numberOfCars++;
+    else { 
+    	throw new OverflowException();
     	}
-    	return numberOfCars;
-    		
-    }			
+    // St�ll en bil p� sista platsen p� v�gen
+   	// (om det g�r).
+    }
+  		
+			
     public String printStatText() {
     	String carPosInLane = "";
     	for (int i = 0; i < theLane.length; i++) {
@@ -114,20 +103,19 @@ public class Lane {
     		}
     	}
     	return carPosInLane;
-    	//...
     	}
+   
     public String toString() {
     	String carPosInLane = "";
     	for (int i = 0; i < theLane.length -1; i++) {
     		if (theLane[i].getCurrentCar() == null) {
     			carPosInLane += "-";
     		}
-    			else {
+    		else {
     			carPosInLane += "C";
     		}
-    	    }
+    	}
     	return carPosInLane;
-    		}
+    }
     		
-
 }

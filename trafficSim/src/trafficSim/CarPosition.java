@@ -4,22 +4,23 @@ package trafficSim;
 // H�ller i en bil och k�nner till sina "grannar". 
 public class CarPosition{
 	
-	private Car currentCar = null; // null om ingen bil finns p� positionen
+	private Car currentCar = null; // null om ingen bil finns p� positionen	
 	
 	public Car getCurrentCar() {
 		return currentCar;
-	}
+	}	
 	// id-nummer
 	private int idNumber;
 	
 	public int getIdNumber() {
 		return idNumber;
 	}
-
+	
 	public void setIdNumber(int idNumber) {
 		this.idNumber = idNumber;
 	}
-	private Lane owner;
+	
+	private Lane owner;	
 	
 	private CarPosition forward;
 	
@@ -45,29 +46,23 @@ public class CarPosition{
 
 	private CarPosition turn;
 	
-	public CarPosition()
-	{
-
+	public CarPosition() {
 	}
 	
-	public boolean isEnd(CarPosition target)
-	{
+	public boolean isEnd(CarPosition target) {
 		return owner.matchEnd(target);
 	}
 	
-	public void moveForward()
-	{
+	public void moveForward() {
 		if (this.getCurrentCar() != null && this.getForward().getCurrentCar() == null){
-		currentCar.setCurrentPosition(getForward());
-		getForward().setCurrentCar(this.getCurrentCar());
-		this.setCurrentCar(null);
-		}
-		
+			currentCar.setCurrentPosition(getForward());
+			getForward().setCurrentCar(this.getCurrentCar());
+			this.setCurrentCar(null);
+		}	
 		// Flytta bilen fram till forward: uppdaterar car's currentPos och carPos currentCar
 	}
 	
-	public boolean turn()
-	{
+	public boolean turn() {
 		return false;
 		// Flytta bilen till turn
 	}
@@ -84,22 +79,25 @@ public class CarPosition{
 	}
 	
 	public boolean equals(Object target){
-    	if (target == "D1" || (int) target == -1 || this == target)
-    		return true;
-    	else return false;
+    	if (this == target) {
+    		return true; 
+    	}
+    	else {
+    		return false;
+    	}
     }
     
-    public boolean equals(CarPosition positionToTest)
-    {
+    public boolean equals(CarPosition positionToTest) {
     	if (this.getCurrentCar() == positionToTest.getCurrentCar() && 
-    			this.getForward() == positionToTest.getForward() &&
-    			this.getIdNumber() == positionToTest.getIdNumber() &&
-    			this.getOwner() == positionToTest.getOwner()) {    			
+    		this.getForward() == positionToTest.getForward() &&
+    		this.getIdNumber() == positionToTest.getIdNumber() &&
+    		this.getOwner() == positionToTest.getOwner()) {    			
     		return true; 
     		}
-    	else
+    	else {
     		return false;
-    }
+    	}	
+   	}
 	
 	
 }

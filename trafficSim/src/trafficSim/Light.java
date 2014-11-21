@@ -36,29 +36,36 @@ public class Light {
     public Light(int period, int green, int time) {
     		this.setGreen(green);
     		this.setPeriod(period);
-    		this.setTime(time);
-    	
+    		this.setTime(time);    	
     	// det går en period innan vi nollställer time och dt blir grönt...
     	}
 
     public void step() { 
-    	if (this.isGreen()) this.time++;
-    	else if (this.periodCounter <= period) this.periodCounter++;
-    	else this.time = 0; this.periodCounter = 0;
-    	
+    	if (this.isGreen()) {
+    		this.time++;
+    	}
+    	else if (this.periodCounter < period) {
+    		this.periodCounter++;
+    	}
+    	else {
+    		this.time = 0; this.periodCounter = 0;
+    	}
     	// Stegar fram klocka ett steg
     }
 
-    public boolean isGreen()   {
-    	if (this.time < this.green) return true;
-    	return false;
+    public boolean isGreen() {
+    	if (this.time < this.green) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     	// Returnerar true om time<green, annars false
     }
 
     public String  toString()  {
-    	return "Period: " + getPeriod() + "'/n' Green: " + getGreen() + "'\n' Time: " + getTime();
-    
-    	//... 
+    	return "Period: " + getPeriod() + "'/n' Green: " + getGreen() + 
+    			"'\n' Time: " + getTime();
     	}
 	
 }

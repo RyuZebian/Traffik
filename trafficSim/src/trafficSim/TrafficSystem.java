@@ -156,7 +156,7 @@ public class TrafficSystem {
 	//r2.step();
 	r0.step();
 	
-	if (arrivalTimeCalc(time) == true && r0.lastFree()) {
+	if (arrivalTimeCalc(time) && r0.lastFree()) {
 		if (destinationIsD1()) {	
 		Car newCar = new Car (time, D1, null);
 		r0.putLast(newCar);
@@ -166,14 +166,16 @@ public class TrafficSystem {
 		r0.putLast(newCar);
 		}	
 	}		
-	else deniedCars++;
+	else if (arrivalTimeCalc (time) && r0.lastFree() == false){
+		deniedCars++;
+	}
 	}
     // Stega systemet ett tidssteg m h a komponenternas step-metoder
 	// Skapa bilar, l�gg in och ta ur p� de olika Lane-kompenenterna
     
     public void calcCarTimeStats (Lane l) {
     	numberOfCarsPassed++;
-    	int timeTaken = time - l.firstCar().getBornTime();
+    	int timeTaken = time - l.firstCar().getBornTime() -1;
     	timeTakenForAll = timeTakenForAll + timeTaken; 
     	averageTime = timeTakenForAll/numberOfCarsPassed;
     	if ( timeTaken > longestTime) {

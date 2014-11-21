@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TrafficTest {
-
 	CarPosition D1;
 	CarPosition A;
 	private CarPosition D2;
@@ -17,38 +16,19 @@ public class TrafficTest {
 		Car c1 = new Car (0, D1, A) ;
 		assertEquals(0, c1.getBornTime());
 		assertEquals(D1, c1.getDestination());
-		assertEquals(A, c1.getCurrentPosition());
-		
-		//String carString = "Car born time: 0 '\n'Car destination: D1'\n'Car position: A";
-		//assertEquals(carString, c1.toString());
-	}
-//	//public void testCarPosition () {
-//		CarPosition carPos = new CarPosition(null)
-//	}
-//	
-	
+		assertEquals(A, c1.getCurrentPosition());	
+		}	
 	
 	@Test
 	public void testLane() {
 		Car c1 = new Car (0, D1, A);
 		Car c2 = new Car (5, D2, B);
 		Lane ourLane = new Lane(10);
-		int no_Cars = ourLane.countCars();
 		ourLane.putLast(c1);
-		
-		//Boolean lastInLane = ourLane.lastFree();
-		//assertEquals(true, lastInLane);
 		CarPosition forwardForLast = c1.getCurrentPosition().getForward();
-		CarPosition nextToLast = (ourLane.theLane[(ourLane.getLength()-2)]);
-		
+		CarPosition nextToLast = (ourLane.theLane[(ourLane.getLength()-2)]);		
 		CarPosition forwardForFifth = (ourLane.theLane[(ourLane.getLength()-5)]).getForward();
 		CarPosition sixthCarPos = (ourLane.theLane[(ourLane.getLength()-6)]);
-		
-		//Car ourCar = ourLane.getFirst();
-//		assertEquals(c1, ourCar);
-//		assertEquals(1, no_Cars);
-		
-		
 		CarPosition lastInLane = (ourLane.theLane[(ourLane.getLength()-1)]);
 		
 		//kollar att CarPos har rätt bil som current
@@ -79,9 +59,7 @@ public class TrafficTest {
 		assertEquals(nextToLast.getCurrentCar(), c1);
 	
 		//kollar att förra carPos inte längre innehåller c1, utan c2
-		assertEquals(lastInLane.getCurrentCar(), c2);
-		
-		
+		assertEquals(lastInLane.getCurrentCar(), c2);		
 	}
 
 	@Test
@@ -89,13 +67,5 @@ public class TrafficTest {
 	TrafficSystem ourTrafficSystem = new TrafficSystem();
 	ourTrafficSystem.print();
 	ourTrafficSystem.printStatistics();
-	//System.out.println(ourTrafficSystem.r0.firstCar().toString());
-
-	// att printa carPositions är nonsense. Hur göra för att få relevanta "identiteter"? 
-	//Skapa nytt fält "id" som sätts vid konstruktionen av lanes??? 
-	
-	
 	}
-	
-	
 }

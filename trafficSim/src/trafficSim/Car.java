@@ -21,17 +21,14 @@ public class Car {
     private CarPosition currentPosition;
     
     
-    public void step()
-    {
-    	//görs i CarPositions moveForward
-    	
+    public void step() {
+    	//görs i CarPositions moveForward	
     	// Uppdatera bilen ett tidssteg
     }
     public Car(int bornTime, CarPosition destination, CarPosition currentPosition) {
 		this.setBornTime(bornTime);
 		this.setDestination(destination);
-		this.setCurrentPosition(currentPosition);
-	
+		this.setCurrentPosition(currentPosition);	
     }
     // konstruktor och get- oct set-metoder
     //...
@@ -40,13 +37,10 @@ public class Car {
     public String toString() {
     	if (this.destination.getIdNumber() == -1) {
         	return "'\n'Car born time: " + this.getBornTime() + " '\n'Car destination: D1" + "'\n'Car position: " + this.currentPosition;
-
     	}
     	else {
         	return "Car born time: " + this.getBornTime() + " '\n'Car destination: D2" + "'\n'Car position: " + this.currentPosition;
-
     	}
-
     }
     
 	public int getBornTime() {
