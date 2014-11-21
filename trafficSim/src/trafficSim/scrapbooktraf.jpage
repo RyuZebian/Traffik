@@ -1,0 +1,4 @@
+int[] anArray;
+anArray = new int[10];
+anArray[3] = 8;
+anArray[3]
